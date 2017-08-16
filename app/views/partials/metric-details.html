@@ -1,0 +1,132 @@
+<div layout="row" >
+  <div layout="column" flex="15" ng-click="vmBuild.openPopup('Metrics Details')" class="link padding10 margin10" ng-class="{'border-red': build.status == 'Rejected' , 'border-green': build.status == 'Complete' || build.status == 'Accepted'  } ">
+    <div class="icon-green thick">
+      Metrics
+    </div>
+    <div layout="row">
+      <span flex="50"><i class="material-icons icon-size icon-green" >file_upload</i></span>
+      <span flex="50" ng-if="build.status !== 'Rejected'"><i class="material-icons icon-size icon-green" >file_upload</i></span>
+      <span flex="50" ng-if="build.status === 'Rejected'"><i class="material-icons icon-size icon-red" style="transform: rotate(-180deg);">file_upload</i></span>
+    </div>
+    <div layout="row">
+      <span flex="50">Test</span>
+      <span flex="50">Maintainability</span>
+    </div>
+    <div layout="row">
+      <span flex="50"><i class="material-icons icon-size icon-Amber" style="transform: rotate(-270deg);" >file_upload</i></span>
+      <span flex="50"><i class="material-icons icon-size icon-Amber" style="transform: rotate(-270deg);" >file_upload</i></span>
+    </div>
+    <div layout="row">
+      <span flex="50">Security</span>
+      <span flex="50">Workmanship</span>
+    </div>
+
+  </div>
+  <div layout="column" flex="15" ng-click="vmBuild.openPopup('Build Details')" class="link border-green padding10 margin10">
+    <div class="icon-green thick">
+      Build
+    </div>
+    <div layout="row" class="padding10">
+      <span flex="50"><i class="material-icons icon-size icon-blue" >computer</i></span>
+      <span flex="50"><i class="material-icons icon-size icon-blue" >computer</i></span>
+    </div>
+    <div layout="row">
+      <span flex="50">Debug</span>
+      <span flex="50">Release</span>
+    </div>
+    <div layout="row" class="padding20">
+      {{::build.build.timeStarted}} - {{::build.build.dateStarted}}
+    </div>
+  </div>
+  <div layout="column" flex="20" ng-click="vmBuild.openPopup('Unit Test Details')" class="link border-green padding10 margin10">
+    <div class="icon-green thick">
+      Unit Test
+    </div>
+    <div layout="column" class="padding10">
+      <div layout="row">
+                        <span>
+                            <nvd3 options="options" data="data"></nvd3>
+                        </span>
+        <span class="build-unit-test">{{::build.unitTest.testPassedPercen}} %</span>
+      </div>
+      <div layout="column" class="build-unit-coverage">
+        <span>{{::build.unitTest.codeCoverage}} %</span>
+        <span>code covered</span>
+      </div>
+    </div>
+  </div>
+  <div layout="column" flex="20" ng-click="vmBuild.openPopup('Functional Test Details')" class="link border-green padding10 margin10">
+    <div class="icon-green thick">
+      Functional Test
+    </div>
+    <div layout="column" class="padding10">
+      <div layout="row">
+                        <span>
+                          <canvas id="pie" class="chart chart-pie chart-size"
+                                  chart-data="build.functionalTest.testPassed"  chart-options="vmBuild.options" chart-colors="vmBuild.colors">
+                         </canvas>
+                        </span>
+        <span class="build-functional-test">{{::build.functionalTest.testPassedPercen}} %</span>
+      </div>
+      <div layout="column" class="build-functional-coverage">
+        <span>{{::build.functionalTest.codeCoverage}} %</span>
+        <span>code covered</span>
+      </div>
+    </div>
+
+  </div>
+  <div layout="column"  flex="30" class="text-align-center padding10 margin10" ng-if="build.status === 'Accepted'">
+    <div class="thick">
+      Result:
+    </div>
+    <br/>
+
+    <div class="icon-Amber">
+      Change Accepted
+    </div>
+    <div class="icon-Amber font-size-32">
+      Auto Merged
+    </div>
+    <div>
+      <md-button class="md-raised md-primary"><i class="material-icons">search</i> <span>merged build</span></md-button>
+    </div>
+  </div>
+  <div layout="column"  flex="30" class="text-align-center padding10 margin10" ng-if="build.status === 'Complete'">
+    <div class="thick">
+      Result:
+    </div>
+
+    <div class="icon-green font-size-32">
+      Complete
+    </div>
+    <div >
+      <md-button class="md-raised md-primary">Deploy</md-button> to
+    </div>
+    <div>
+      <md-input-container>
+        <md-select ng-model="vmBuild.buildDeploy" aria-label="Deployment">
+          <md-option value="Production">Production</md-option>
+          <md-option value="Development" >Development</md-option>
+          <md-option value="Testing">Testing</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </div>
+  <div layout="column"  flex="30" class="text-align-center padding10 margin10" ng-if="build.status === 'Rejected'">
+    <div class="thick">
+      Result:
+    </div>
+    <br/>
+
+    <div class="icon-red">
+      Change Rejected
+    </div>
+    <div class="icon-red font-size-32">
+      Metrics Reduction
+    </div>
+    <div>
+      <md-button class="md-raised md-primary">find issues</md-button>
+    </div>
+  </div>
+
+</div>

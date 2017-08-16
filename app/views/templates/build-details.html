@@ -1,0 +1,57 @@
+<md-toolbar class="md-whiteframe-1dp">
+  <div class="md-toolbar-tools">
+    <div class="md-title">Build Management Screen</div>
+  </div>
+</md-toolbar>
+
+<md-content laout="column" flex ng-controller="BuildController as vmBuild">
+  <md-card>
+    <md-toolbar class="md-table-toolbar md-default" >
+      <div class="md-toolbar-tools">
+        <span>Build Details</span>
+        <div flex></div>
+      </div>
+    </md-toolbar>
+    <md-table-container>
+      <table md-table>
+        <thead md-head >
+        <tr md-row>
+          <th md-column ><span>Changelist / Build</span></th>
+          <th md-column ><span>Owner</span></th>
+          <th md-column ><span>Time Started</span></th>
+          <th md-column ><span>State</span></th>
+          <th md-column ><span>Metrics</span></th>
+          <th md-column ><span>Build</span></th>
+          <th md-column  ><span>Unit Test</span></th>
+          <th md-column  ><span>Functional Test</span></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody md-body  ng-repeat="build in vmBuild.buildDetails">
+          <tr md-row class="link"  ng-disabled="build.status === 'Pending' || build.status === 'Running'" ng-click="vmBuild.openBuildDetails($index)">
+            <td md-cell  ><span ng-class="vmBuild.getTableTextClass(build)">{{::build.changes}}</span></td>
+            <td md-cell>
+              <span ng-class="vmBuild.getTableTextClass(build)">{{::build.owner}}</span>
+            </td>
+            <td md-cell ><span ng-class="vmBuild.getTableTextClass(build)">{{::build.dateStarted}}  {{::build.timeStarted}}</span></td>
+            <td md-cell><span ng-class="vmBuild.getTableTextClass(build)">{{::build.status}}</span></td>
+            <td md-cell><div ng-class="vmBuild.getClass(build,'Metrics')"></div></td>
+            <td md-cell><div ng-class="vmBuild.getClass(build)"></div></td>
+            <td md-cell ><div ng-class="vmBuild.getClass(build)"></div></td>
+            <td md-cell ><div ng-class="vmBuild.getClass(build)"></div></td>
+            <td md-cell>
+              <i class="material-icons" ng-if="!build.expand">expand_more</i>
+              <i class="material-icons" ng-if="build.expand">expand_less</i>
+            </td>
+
+           </tr>
+           <tr md-row  ng-if="vmBuild.isShown(build)">
+            <td md-cell colspan="9">
+              <div ng-include src="'views/partials/metric-details.html'"></div>
+            </td>
+            </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+</md-content>

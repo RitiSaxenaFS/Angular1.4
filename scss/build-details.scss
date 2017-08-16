@@ -1,0 +1,129 @@
+.link {
+  font-weight: 400;
+  cursor: pointer;
+  &[disabled]{
+    pointer-events: none;
+    cursor: not-allowed;
+    text-decoration: initial;
+  }
+}
+
+.border-green{
+  border-width: 2px;
+  border-color: green;
+  border-style: solid;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.border-red{
+  border-width: 2px;
+  border-color: red;
+  border-style: solid;
+}
+
+.padding10{
+  padding: 10px
+}
+.padding20{
+  padding: 20px
+}
+.margin10{
+  margin: 10px;
+}
+
+.icon-green{
+  color: green;
+}
+.icon-red{
+  color: red;
+}
+.icon-blue{
+  color: blue;
+}
+
+.icon-Amber{
+  color: #ffbf00;
+}
+
+.icon-grey{
+  color: lightgrey;
+}
+
+.icon-size{
+  font-size: 60px !important;
+}
+
+.thick{
+  font-weight: bold;
+}
+
+.build-metrics-green{
+  min-height: 35px;
+  max-width: 50px;
+  background-color: green;
+}
+.build-metrics-red{
+  min-height: 35px;
+  max-width: 50px;
+  background-color: red;
+}
+.build-metrics-blue{
+  min-height: 35px;
+  max-width: 50px;
+  background: blue; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, blue , lightgrey); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, blue, lightgrey); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, blue, lightgrey); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, blue , lightgrey); /* Standard syntax */
+}
+
+.build-metrics-pending{
+  min-height: 35px;
+  max-width: 50px;
+  background-color: lightgrey;
+}
+
+
+
+
+.text-align-center{
+  text-align: center;
+}
+
+.font-size-32{
+  font-size: 32px;
+}
+
+.chart-size{
+  display: block;
+  height: 120px !important;
+  width: 120px !important;
+}
+
+.build-unit-test{
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 10px;
+  font-size: 30px;
+  color: green;
+}
+
+.build-unit-coverage{
+  text-align: center;
+  margin-top: 10px;
+  background: linear-gradient(to right, lightgreen, pink);
+}
+
+.build-functional-test{
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 10px;
+  font-size: 30px;
+  color: #ffbf00;
+}
+
+.build-functional-coverage{
+  text-align: center;
+  margin-top: 10px;
+  background: linear-gradient(to left, lightgreen, pink);
+}
